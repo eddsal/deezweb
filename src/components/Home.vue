@@ -1,25 +1,21 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
-  </div>
+  <p class="homeText">
+  Home
+  
+  </p>
 </template>
-
 <script>
-import Favorite from "./Favorite.vue";
 export default {
-  name: 'home',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
-   components: {
-    Favorite
-  },
-}
+  name: 'Home'
+};
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.homeText{
+    font-size: 35px;
+    color: red;
+    text-align: center;
+    position: relative;
+    top:30px;
+    text-shadow: 2px 2px 2px gray;
+}
 </style>
