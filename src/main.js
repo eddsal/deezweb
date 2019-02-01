@@ -9,7 +9,7 @@ Vue.use(BootstrapVue);
 
 Vue.use(Router)
 import Home from '@/components/Home'
-import Favorite from '@/components/Favorite'
+import Favorite from '@/components/Favorite'                     
 import Search from '@/components/Search'
 
 
@@ -24,11 +24,10 @@ const router = new Router({
   ]
 })
 
-
-
 Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
   router:router
 }).$mount('#app')
+

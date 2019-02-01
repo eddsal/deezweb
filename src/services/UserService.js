@@ -1,22 +1,21 @@
-import axios from 'axios';
+// import axios from 'axios'
+import fetchJsonp from 'fetch-jsonp'
 
-const CORS_ANYWHERE = 'https://cors-anywhere.herokuapp.com/';
-const API_ENDPOINT = 'https://api.deezer.com/';
 
-const instance = axios.create({
-  baseURL: " ${CORS_ANYWHERE} ${API_ENDPOINT},
-});
+const API_ENDPOINT = 'https://api.deezer.com'
+
 
 export default {
-  fetchBy(query, by, limit = 10) {
-    return instance.get('/search', {
-      params: {
-        q: query,
-        order: by,
-        limit,
-      },
-    })
-      .then(({ data }) => data)
-      .catch(err => console.log(err)); // eslint-disable-line
-  },
-};
+    search(val, order) {
+        return fetchJsonp(`${API_ENDPOINT}/search?q=${val}&order=${order}&output=jsonp`)
+            .then(response => response.json())
+            .then(response => response.data)
+            .then(response => {
+                if (response.error === 1){
+                    return Promise.reject(response)
+                } else {
+                    return Promise.resolve(response)
+                }
+            })
+    },
+}

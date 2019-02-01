@@ -1,7 +1,7 @@
 <template>
  <div class="Favorite">
      dsdsd
-  <h1>{{Favorite}}</h1>
+  <h1></h1>
  </div>
 </template>
 <script>

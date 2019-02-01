@@ -1,30 +1,17 @@
-<template>
-  <b-container id="app">
-    <b-row>
-      <b-col>
-        <navbar/>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <router-view/>
-      </b-col>
-    </b-row>
-  </b-container>
-</template>
- 
-<script>
-import Navbar from '@/components/Navbar';
-import Home from '@/components/Home';
-import Search from '@/components/Search';
 
- 
+<template>
+  <div id="app">
+    <Navbar/>
+    <router-view/>
+  </div>
+</template>
+
+<script>
+import Navbar from "@/components/Navbar.vue";
 export default {
-  name: 'App',
+  name: "app",
   components: {
-    Navbar,
-    Home,
-    Search
+    Navbar
   }
 };
 </script>

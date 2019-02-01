@@ -1,40 +1,60 @@
-<template>
-    <div class="search-container">
-        <div class="search-inner-container">
-            <label for="mInput">Title:</label>
-            <input name="mInput" type="text" placeholder="Song,Artist....">
-        </div>
-        <div class="right-sort-container">
-            <label for="sort_chooser">Sort by</label>
-            <select name="sort_chooser" id="">
-                <option value="Album">Album</option>
-                <option value="Artiste">Artiste</option>
-                <option value="Musique">Musique</option>
-                <option value="Les plus populaire">Les plus populaire</option>
-                <option value="Les mieu notes">les mieu notes</option>
 
-            </select>
-        </div>
-        <input type="button" name="validator" value="GO" class="btnValidator">
-    </div>
+<template>
+    <div class="container centered">
+
+    <h1>Seach</h1>
+    <p>Search ur music on Deezer:</p>
+    <hr>
+
+    <form class="filterform" @submit="onSearch">
+      <label for="title">Title :</label>
+      <input type="search" placeholder="Eminem, Angèle ..." v-model="search">
+
+      <label for="filter">filter by :</label>
+      <select name="filterBy" v-model="searchBy" class="form-control form-control-lg">
+        <option value="ALBUM_DESC" >Album</option>
+        <option value="ARTIST_DESC">Artist</option>
+        <option value="TRACK_DESC">Music</option>
+        <option value="RANKING_DESC">most popula</option>
+        <option value="RATING_DESC">high ranked</option>
+      </select>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+    
+      <MusicCard v-for="music in artist" :key="music.id" :music="music"/>
+    </form>
+
+  </div>
 </template>
 
 <script>
-export default {
-    name: "Search"
+ import UserService from '@/services/UserService.js'
+ import MusicCard from '@/components/MusicCard.vue'
 
+export default {
+    name: 'Search',
+    components: {
+      MusicCard
+    },
+    data(){
+return {
+    artist:null,
+    searchBy: "",
+    search: "",
+    
+
+        }
+    },
+    methods: {
+         onSearch() {
+            UserService.search(this.search, this.searchBy)
+            .then(artist => {
+                this.artist = artist
+            })
+        }
+    }
 }
+
+
 </script>
 
-<style>
-.search-container{
-    display: flex;
-    margin-top: 2vw;
-    justify-content: space-between
-}
-.btnValidator{
-    color: white;
-    background-color: #0d68d4
-}
-
-</style>
